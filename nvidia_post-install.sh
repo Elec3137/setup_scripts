@@ -26,7 +26,7 @@ misc.sh
 
 sudo sed -i 's/^\(GRUB_TIMEOUT\s*=\s*\).*$/\1"1"/' /etc/default/grub
 sudo sed -i 's/^\(GRUB_GFXMODE\s*=\s*\).*$/\11280x720/' /etc/default/grub
-# to comment out eOS flashbang decorations
+# to comment out eOS "flashbang" decorations
 sudo sed -i '/GRUB_COLOR_NORMAL/ s/^#*/#/g' /etc/default/grub
 sudo sed -i '/GRUB_COLOR_HIGHLIGHT/ s/^#*/#/g' /etc/default/grub
 sudo sed -i '/GRUB_BACKGROUND/ s/^#*/#/g' /etc/default/grub
