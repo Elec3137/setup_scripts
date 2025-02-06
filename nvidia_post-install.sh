@@ -1,6 +1,6 @@
 #!/bin/sh
 # Compilation of setup scripts for the first boot on eOS using an nVidia GPU (+ BTRFS)
-# Some functions depend on these scripts in working directory or $PATH: zram-generator.sh mangohud.sh
+# Some functions depend on these scripts in working directory or $PATH: zram-generator.sh mangohud.sh misc.sh
 
 # colors for error readability
 r="\033[31;1m"
@@ -22,11 +22,7 @@ zram-generator.sh
 
 mangohud.sh
 
-echo 'kernel.sysrq=1' | sudo tee /etc/sysctl.d/99-reisub.conf
-
-
-mkdir ~/.config/nano && ls -1 /usr/share/nano/*.nanorc | sed 's/^\//include \//' > ~/.config/nano/nanorc && sudo cp ~/.config/nano/nanorc /root/.nanorc
-
+misc.sh
 
 sudo sed -i 's/^\(GRUB_TIMEOUT\s*=\s*\).*$/\1"1"/' /etc/default/grub
 sudo sed -i 's/^\(GRUB_GFXMODE\s*=\s*\).*$/\11280x720/' /etc/default/grub
