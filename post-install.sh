@@ -1,6 +1,6 @@
 #!/bin/sh
-# Compilation of setup scripts for the first boot on eOS using an nVidia GPU (skips BTRFS steps if / is not BTRFS)
-# Some functions depend on these other scripts in working directory or $PATH: zram-generator.sh mangohud.sh misc.sh
+# Compilation of setup scripts for the first boot on eOS (skips BTRFS steps if / is not BTRFS)
+# Some functions depend on these other scripts in working directory or $PATH: graphics-drivers.sh zram-generator.sh mangohud.sh misc.sh
 
 # colors for error readability
 r="\033[31;1m"
@@ -13,15 +13,14 @@ yay -S --noconfirm paru # paru is a more effective AUR helper in my experience
 # make sure outdated keyring won't make pacman fail
 sudo pacman -Sy --needed --noconfirm archlinux-keyring || exit
 
-# remove default kernel and install linux-zen for binder module (mostly for waydroid)
-# I would prefer to replace firefox with librewolf (later)
+# remove default kernel and install linux-zen for binder module. (mostly for waydroid) This is a dangerous thing to do
+# replace firefox with librewolf (install librewolf later since it's an AUR package)
 sudo pacman -Rns --noconfirm yay linux linux-headers firefox
-
-# make sure these are the right drivers for you! https://wiki.archlinux.org/title/NVIDIA
-# building with DKMS also takes a while on slower CPUs
-sudo pacman -S --needed --noconfirm linux-zen linux-zen-headers nvidia-open-dkms || (printf "${r}The system is almost certainly unbootable since this failed!! Fix it, do NOT reboot.${e}\n" && exit)
+sudo pacman -S --needed --noconfirm linux-zen linux-zen-headers || (printf "${r}The system is almost certainly unbootable since this failed!! Fix it, do NOT reboot.${e}\n" && exit)
 
 sudo pacman -Su --needed --noconfirm || (sudo grub-mkconfig -o /boot/grub/grub.cfg && printf "${c}Partially completed, possibly bootable ${r}if kernel is fine${e}\n" && exit)
+
+graphics-drivers.sh
 
 zram-generator.sh
 
@@ -53,7 +52,7 @@ fi
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # other packages I would suggest to install
-paru -S --needed --noconfirm librewolf-bin htop nvtop filelight fastfetch kwalletmanager bat sshfs steam wine wine-mono wine-gecko nvidia-utils lib32-nvidia-utils gnome-disk-utility || printf "${r}Error installing extra packages${e}\n"
+paru -S --needed --noconfirm librewolf-bin htop nvtop filelight fastfetch kwalletmanager sshfs steam wine wine-mono wine-gecko gnome-disk-utility || printf "${r}Error installing extra packages${e}\n"
 
 # sudo pacman -S --needed --noconfirm refind
 # sudo refind-install # as a backup
