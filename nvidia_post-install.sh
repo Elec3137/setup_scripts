@@ -1,6 +1,6 @@
 #!/bin/sh
 # Compilation of setup scripts for the first boot on eOS using an nVidia GPU (skips BTRFS steps if / is not BTRFS)
-# Some functions depend on these scripts in working directory or $PATH: zram-generator.sh mangohud.sh misc.sh
+# Some functions depend on these other scripts in working directory or $PATH: zram-generator.sh mangohud.sh misc.sh
 
 # colors for error readability
 r="\033[31;1m"
