@@ -1,4 +1,5 @@
 #!/bin/sh
+# Reference for setting up a sensical libvirt images subvolume (to avoid extreme fragmentation on BTRFS)
 
 sudo pacman -S --needed --noconfirm virt-manager qemu-full
 sudo rmdir /var/lib/libvirt/images && sudo btrfs subv create /var/lib/libvirt/images && sudo chattr +C /var/lib/libvirt/images || exit
