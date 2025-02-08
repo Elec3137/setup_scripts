@@ -35,6 +35,9 @@ sudo sed -i '/GRUB_COLOR_NORMAL/ s/^#*/#/g' /etc/default/grub
 sudo sed -i '/GRUB_COLOR_HIGHLIGHT/ s/^#*/#/g' /etc/default/grub
 sudo sed -i '/GRUB_BACKGROUND/ s/^#*/#/g' /etc/default/grub
 
+# other packages I would suggest to install
+paru -S --needed --noconfirm librewolf-bin htop nvtop filelight fastfetch kwalletmanager sshfs steam wine wine-mono wine-gecko gnome-disk-utility || printf "${r}Error installing extra packages${e}\n"
+
 if [ `stat -f --format=%T /` = "btrfs" ]; then
     sudo pacman -S --needed --noconfirm compsize grub-btrfs
 
@@ -50,9 +53,6 @@ else
 fi
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-# other packages I would suggest to install
-paru -S --needed --noconfirm librewolf-bin htop nvtop filelight fastfetch kwalletmanager sshfs steam wine wine-mono wine-gecko gnome-disk-utility || printf "${r}Error installing extra packages${e}\n"
 
 # sudo pacman -S --needed --noconfirm refind
 # sudo refind-install # as a backup
