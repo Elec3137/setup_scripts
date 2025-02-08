@@ -1,7 +1,8 @@
 #!/bin/sh
+# writes fcitx5 + mozc config files
 sudo pacman -S --needed --noconfirm fcitx5 fcitx5-mozc kcm-fcitx5 fcitx5-gtk
 
-# changes in config:
+# changes in configs:
 # add mozc
 # "experimental" plasma theme in modules>theme
 # change actiation shortcut to: ctrl+alt+space
