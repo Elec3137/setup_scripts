@@ -19,3 +19,4 @@ which excecutes the following functions:
 * `cloudflared.sh` - install cloudflared for dns over https
 * `libvirt.sh` - primarily image subvolume setup
 * `waydroid.sh` - waydroid initialization w/ ARM translation
+* `maliit-dark.sh` - sets maliit up to run with dark mode env variables
