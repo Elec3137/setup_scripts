@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 echo 'kernel.sysrq=1' | sudo tee /etc/sysctl.d/99-reisub.conf
 
