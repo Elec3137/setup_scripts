@@ -39,15 +39,9 @@ sudo sed -i '/GRUB_BACKGROUND/ s/^#*/#/g' /etc/default/grub
 paru -S --needed --noconfirm librewolf-bin htop nvtop filelight fastfetch kwalletmanager sshfs steam wine wine-mono wine-gecko gnome-disk-utility || printf "${r}Error installing extra packages${e}\n"
 
 if [ `stat -f --format=%T /` = "btrfs" ]; then
-    sudo pacman -S --needed --noconfirm compsize grub-btrfs
-
+    sudo pacman -S --needed --noconfirm compsize grub-btrfs btwrap-git
     # install my cli app and take a snapshot :3
-    cd /tmp; git clone https://github.com/Elec3137/btwrap.git; cd ./btwrap
-    ./install.sh     # -s arg to set up auto snapshots, -p to preserve cloned directory
-    cd ~/   # to avoid benign errors from a nonexistent working directory.
-
-    btwrap -SC / # creates a subvolume "/.snapshots" and snapshots the root subvolume into there
-
+    btwrap -q -C / -S
 else
     printf "${c}Filesystem not btrfs; skipping steps${e}"
 fi
